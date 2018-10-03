@@ -1,7 +1,13 @@
-﻿
-@{
-    ViewBag.Title = "ServerFormPartials";
-}
+﻿@model Lib.Models.Server
 
-<h2>ServerFormPartials</h2>
+    <p>Имя сервера:</p>
+    @Html.TextBoxFor(m => m.Name)
+    @Html.ValidationMessageFor(model => model.Name)
 
+    <p>Домен:</p>
+    @Html.TextBoxFor(m => m.Domen)
+    @Html.ValidationMessageFor(model => model.Domen)
+
+    <p>Тип:</p>
+    @Html.DropDownListFor(a => a.Type, new SelectList(Enum.GetValues(typeof(Lib.Models.ServerType))))
+    <br /><br />
