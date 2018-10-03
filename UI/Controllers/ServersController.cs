@@ -87,11 +87,18 @@ namespace AUwebServices.Controllers
         /// !you should send POST request from form after submit button click!
         /// </summary>
         [HttpPost]
-        public async Task<HttpStatusCode> Add(Server server)
+        public async Task<ActionResult> Add(Server server)
         {
-            HttpResponseMessage response = await client.PostAsJsonAsync($"{APIpath}/Servers", server);
-            
-            return response.IsSuccessStatusCode ? HttpStatusCode.OK : HttpStatusCode.NotFound;
+            if (ModelState.IsValid)
+            {
+                HttpResponseMessage response = await client.PostAsJsonAsync($"{APIpath}/Servers", server);
+
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         /// <summary>

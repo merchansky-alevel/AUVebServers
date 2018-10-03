@@ -6,17 +6,16 @@ namespace Lib.Models
     {
         public int Id { get; set; }
 
-        [Required]
-        [StringLength(100, ErrorMessage = "Incorrect domen lenght", MinimumLength = 2)]
-        [Url(ErrorMessage = "Not URL")]
+        [Required(ErrorMessage = "Поле 'Домен' - обязательное!")]
+        [StringLength(100, ErrorMessage = "Недопустимая длинна домена!", MinimumLength = 2)]
+        [Url]
         public string Domen { get; set; }
 
-        [Required]
-        [StringLength(100, ErrorMessage = "Incorrect name lenght", MinimumLength = 2)]
+        [Required(ErrorMessage = "Поле 'Имя' - обязательное!")]
+        [StringLength(100, ErrorMessage = "Недопустимая длинна имени!", MinimumLength = 2)]
         public string Name { get; set; }
 
         [Required]
-        [StringLength(10, ErrorMessage = "Incorrect server type lenght", MinimumLength = 2)]
         public ServerType Type { get; set; }
     }
 

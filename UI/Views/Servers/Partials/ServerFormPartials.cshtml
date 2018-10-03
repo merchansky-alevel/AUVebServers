@@ -1,13 +1,17 @@
 ﻿@model Lib.Models.Server
 
-    <p>Имя сервера:</p>
-    @Html.TextBoxFor(m => m.Name)
-    @Html.ValidationMessageFor(model => model.Name)
-
-    <p>Домен:</p>
-    @Html.TextBoxFor(m => m.Domen)
-    @Html.ValidationMessageFor(model => model.Domen)
-
-    <p>Тип:</p>
-    @Html.DropDownListFor(a => a.Type, new SelectList(Enum.GetValues(typeof(Lib.Models.ServerType))))
-    <br /><br />
+<p>Имя сервера:</p>
+@Html.TextBoxFor(m => m.Name)
+<div>
+    <p style="color: crimson">@Html.ValidationMessageFor(model => model.Name)</p>
+</div>
+<p>Домен:</p>
+@Html.TextBoxFor(m => m.Domen)
+<div>
+    <p style="color: crimson">@Html.ValidationMessageFor(model => model.Domen)</p>
+</div>
+<p>Тип:</p>
+<div>
+    @Html.DropDownListFor(a => a.Type, new SelectList(Enum.GetValues(typeof(Lib.Models.ServerType))));
+</div>
+<hr />

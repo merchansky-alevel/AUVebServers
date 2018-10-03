@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<Lib.Models.Server> 
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Сервера";
 }
 
-<h2>Index</h2>
+<h2>Сервера</h2>
 
 <div class="container">
     <div class="row">
@@ -14,9 +14,11 @@
                 <div class="item">
                     <hr />
                     <h3>@server.Name</h3>
-                    <p>@server.Domen</p>
+                    <p>
+                        <a href="https://@server.Domen">@server.Domen</a>
+                    </p>
                     <p>Server type: @server.Type</p>
-                    @Html.ActionLink("Update", "Edit", "Servers", new { id = server.Id }, null)
+                    @Html.ActionLink("Изменить", "Edit", "Servers", new { id = server.Id }, null)
                     <hr />
                 </div>
             }
@@ -27,7 +29,7 @@
     <div class="row">
         <div class="col-md-12">
             <div style="text-align: right">
-                @Html.ActionLink("Add new server", "Add", "Servers")
+                @Html.ActionLink("Добавть сервер", "Add", "Servers")
             </div>
         </div>
     </div>
