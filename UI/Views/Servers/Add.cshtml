@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewBag.Title = "Add";
+}
+
+<h2>Add</h2>
+
+@using (Html.BeginForm("Add", "Servers", FormMethod.Post))
+{
+    Html.RenderPartial("Partials/ServerFormPartials");
+
+    <button type="submit">Add server</button>
+}

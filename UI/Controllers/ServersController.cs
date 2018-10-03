@@ -15,7 +15,7 @@ namespace AUwebServices.Controllers
 
         private string APIpath = UI.Properties.Settings.Default.API;
         
-        ServersController ()
+        public ServersController ()
         {
             client = new HttpClient();
 
