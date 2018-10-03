@@ -71,7 +71,6 @@ namespace AUwebServices.Controllers
             HttpResponseMessage response = await client.PutAsJsonAsync($"{APIpath}/Servers", server);
 
             return response.IsSuccessStatusCode ? HttpStatusCode.OK : HttpStatusCode.NotFound;
-
         }
 
         /// <summary>
