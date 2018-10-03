@@ -12,7 +12,7 @@ namespace API
         {
             // Конфигурация и службы веб-API
             config.Formatters.JsonFormatter.SupportedMediaTypes.Add(
-                           new MediaTypeHeaderValue("text/plain"));
+                           new MediaTypeHeaderValue("text/html"));
 
             config.Formatters.JsonFormatter.SupportedMediaTypes.Add(
                 new MediaTypeHeaderValue("application/octet-stream"));

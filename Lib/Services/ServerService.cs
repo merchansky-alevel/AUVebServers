@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using Lib.Models;
@@ -9,34 +10,39 @@ namespace Lib.Services
 {
     public class ServerService : IServerService
     {
-        private static string _path = @"C:\Users\evgen\Desktop\module-task-mvc-and-api\db.txt";
+        private static string _path = @"E:\A_level\Git\AUVebServers\db.txt";
 
-        private static List<Server> _db = new List<Server>();
+        public static List<Server> _db = new List<Server>() { };
 
         static ServerService()
         {
-            _db.Add(new Server { Id = 1, Domen = "www.test.com", Name = "Test name", Type = ServerType.Gaming });
+            //_db.Add(new Server { Id = 1, Domen = "www.test.com", Name = "Test name", Type = ServerType.Gaming });
+            //if ((JsonConvert.DeserializeObject<List<Server>>(File.ReadAllText(_path)) == null){ }
 
-            _db = JsonConvert.DeserializeObject<List<Server>>(File.ReadAllText(_path));
+
+            if (JsonConvert.DeserializeObject<List<Server>>(File.ReadAllText(_path)) == null)
+            {
+                _db = new List<Server> { };
+            }
+            else
+            {
+                _db = JsonConvert.DeserializeObject<List<Server>>(File.ReadAllText(_path));
+            }
         }
 
         private void Save()
         {
             string productList = JsonConvert.SerializeObject(_db);
 
-            File.WriteAllText(_path, _db.ToString());
+            File.WriteAllText(_path, productList);
         }
 
         private int GetMaxInt()
         {
-            if (_db != null && !_db.Any())
-            {
-                return 0;
-            }
-            else
-            {
-                return _db.Max(x => x.Id) + 1;
-            }
+            const int seed = 1;
+            return _db != null && _db.Any()
+                        ? _db.Max(x => x.Id) + seed
+                        : seed;
         }
 
         // POST:
@@ -71,9 +77,18 @@ namespace Lib.Services
         // GET:
         public IEnumerable<Server> GetAll()
         {
-            return _db
-                .OrderBy(x => x.Name)
-                .ToList();
+            try
+            {
+                return _db
+                    .OrderBy(x => x.Name)
+                    .ToList();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+
+            return new List<Server> { };
         }
 
         // PUT:
