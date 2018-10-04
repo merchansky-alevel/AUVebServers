@@ -62,15 +62,16 @@ namespace AUwebServices.Controllers
             }
             else
             {
-                return RedirectToAction("Index"); // to error page
+                return RedirectToAction("Error", "Home");
             }            
         }
 
-        [HttpGet]
-        public ActionResult Edit()
-        {
-            return RedirectToAction("Index"); // to error page
-        }
+        //temporary comment due to errors
+        //[HttpGet]
+        //public ActionResult Edit()
+        //{
+        //    return RedirectToAction("Error", "Home");
+        //}
 
         /// <summary>
         /// !REQUEST from updating form!

@@ -10,7 +10,7 @@ namespace Lib.Services
 {
     public class ServerService : IServerService
     {
-        private static string _path = @"C:\Users\evgen\Desktop\AUVebServers\db.txt";
+        private static string _path = @"E:\A_level\Git\AUVebServers\db.txt";
 
         public static List<Server> _db = new List<Server>() { };
 
