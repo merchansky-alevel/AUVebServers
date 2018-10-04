@@ -48,30 +48,30 @@ namespace AUwebServices.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet]
-        public async Task<ActionResult> Edit(int id)
+        public async Task<ActionResult> Edit(int? id)
         {
             string json = await client.GetStringAsync($"{APIpath}/Servers");
 
             IEnumerable<Server> serversList = JsonConvert.DeserializeObject<IEnumerable<Server>>(json);
 
-            if (serversList.Select(x => x.Id).Contains(id))
+            if (id.HasValue)
             {
                 Server serverForUpdate = serversList.FirstOrDefault(x => x.Id == id);
 
-                return View(serverForUpdate);
+                if (serverForUpdate != null)
+                {
+                    return View(serverForUpdate);
+                }
+                else
+                {
+                    return RedirectToAction("Index");
+                }
             }
             else
             {
-                return RedirectToAction("Error", "Home");
-            }            
+                return RedirectToAction("Index");
+            }
         }
-
-        //temporary comment due to errors
-        //[HttpGet]
-        //public ActionResult Edit()
-        //{
-        //    return RedirectToAction("Error", "Home");
-        //}
 
         /// <summary>
         /// !REQUEST from updating form!
