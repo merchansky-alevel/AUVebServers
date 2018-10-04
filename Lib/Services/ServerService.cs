@@ -10,14 +10,12 @@ namespace Lib.Services
 {
     public class ServerService : IServerService
     {
-        private static string _path = @"E:\A_level\Git\AUVebServers\db.txt";
+        private static string _path = @"C:\Users\evgen\Desktop\AUVebServers\db.txt";
 
         public static List<Server> _db = new List<Server>() { };
 
         static ServerService()
         {
-            //_db.Add(new Server { Id = 1, Domen = "www.test.com", Name = "Test name", Type = ServerType.Gaming });
-
             if (JsonConvert.DeserializeObject<List<Server>>(File.ReadAllText(_path)) == null)
             {
                 _db = new List<Server> { };
@@ -75,18 +73,9 @@ namespace Lib.Services
         // GET:
         public IEnumerable<Server> GetAll()
         {
-            try
-            {
-                return _db
-                    .OrderBy(x => x.Name)
-                    .ToList();
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex);
-            }
-
-            return new List<Server> { };
+            return _db
+                .OrderBy(x => x.Name)
+                .ToList();
         }
 
         // PUT:
