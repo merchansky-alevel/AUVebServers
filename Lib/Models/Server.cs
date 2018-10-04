@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Lib.Models
 {
@@ -16,15 +17,6 @@ namespace Lib.Models
         public string Name { get; set; }
 
         [Required]
-        public ServerType Type { get; set; }
-    }
-
-    public enum ServerType
-    {
-        Web = 1,
-        Gaming,
-        Media,
-        Email,
-        Users,
+        public IEnumerable<ServerType> type = new List<ServerType>();
     }
 }
