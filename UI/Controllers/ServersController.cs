@@ -64,12 +64,12 @@ namespace AUwebServices.Controllers
                 }
                 else
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Error", "Home");
                 }
             }
             else
             {
-                return RedirectToAction("Index");
+                return RedirectToAction("Error", "Home");
             }
         }
 
