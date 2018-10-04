@@ -1,6 +1,7 @@
 ﻿using Lib.Models;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -49,20 +50,28 @@ namespace AUwebServices.Controllers
         [HttpGet]
         public async Task<ActionResult> Edit(int id)
         {
-            Server serverForUpdating = null;
+            string json = await client.GetStringAsync($"{APIpath}/Servers");
 
-            HttpResponseMessage response = await client.GetAsync($"{APIpath}/Servers/{id}");
+            IEnumerable<Server> serversList = JsonConvert.DeserializeObject<IEnumerable<Server>>(json);
 
-            if (response.IsSuccessStatusCode)
+            if (serversList.Select(x => x.Id).Contains(id))
             {
-                serverForUpdating = await response.Content.ReadAsAsync<Server>();
+                Server serverForUpdate = serversList.FirstOrDefault(x => x.Id == id);
+
+                return View(serverForUpdate);
             }
-
-            return View(serverForUpdating);
-
-            //else?
+            else
+            {
+                return RedirectToAction("Index"); // to error page
+            }            
         }
-        
+
+        [HttpGet]
+        public ActionResult Edit()
+        {
+            return RedirectToAction("Index"); // to error page
+        }
+
         /// <summary>
         /// !REQUEST from updating form!
         /// </summary>
