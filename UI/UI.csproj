@@ -193,6 +193,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Styles\main.css" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -211,6 +212,7 @@
     <Content Include="Views\Servers\Partials\ServerFormPartials.cshtml" />
     <Content Include="Views\Servers\Edit.cshtml" />
     <Content Include="Views\Servers\Add.cshtml" />
+    <Content Include="Views\Home\Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
