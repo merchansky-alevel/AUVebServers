@@ -1,1 +1,1 @@
-[{"Id":1,"Domen":"www.again.com","Name":"someName2X","Type":2},{"Id":2,"Domen":"www.123.com","Name":"sdasda","Type":4}]
+[]

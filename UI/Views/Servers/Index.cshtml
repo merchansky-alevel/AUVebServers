@@ -1,36 +1,35 @@
-﻿@model IEnumerable<Lib.Models.Server> 
+﻿@model IEnumerable<Lib.Models.Server>
 
 @{
     ViewBag.Title = "Сервера";
 }
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
 
 <h2>Сервера</h2>
-
-<script>
-    const showModal = () => confirm("Подтверждаете удаление?")
-</script>
 
 <div class="container">
     <div class="row">
         <div class="col-md-12">
             @foreach (var server in Model)
             {
-            <div class="item">
-                <hr />
-                <h3>@server.Name</h3>
-                <p>
-                    <a href="https://@server.Domen">@server.Domen</a>
-                </p>
-                <p>Server type: @server.Type</p>
-                @using (Html.BeginForm("DeleteServer", "Servers", FormMethod.Post))
-                {
-                    @Html.Hidden("id", server.Id)
-                    @Html.ActionLink("Изменить", "Edit", "Servers", new { id = server.Id }, null)
-                    
-                    <button type="submit" onclick="showModal()" value="Удалить">Удалить</button>
-                }
-                <hr />
-            </div>
+                int index = Model.ToList().IndexOf(server);
+
+                <div class="item">
+                    <hr />
+                    <h3>@server.Name</h3>
+                    <p>
+                        <a href="https://@server.Domen">@server.Domen</a>
+                    </p>
+                    <p>Server type: @server.Type</p>
+                    @using (Html.BeginForm("DeleteServer", "Servers", FormMethod.Post, new { @class = $"{index}" }))
+                    {
+                        @Html.Hidden("id", server.Id)
+                        @Html.ActionLink("Изменить", "Edit", "Servers", new { id = server.Id }, null)
+                        <span>&nbsp;</span>
+                        @Html.ActionLink("Удалить", "", null, new { @class = "remove" })
+                    }
+                    <hr />
+                </div>
             }
         </div>
     </div>
@@ -44,3 +43,24 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    $(() => {
+        const buttons = document.querySelectorAll(".remove");
+        const toList = Array.prototype.slice.call(buttons);
+
+        toList.map(i => i.addEventListener("click", (e) => {
+            e.preventDefault();
+
+            let confiramtion = confirm("Подтверждаете удаление?");
+
+            let formForSubmit = i.parentNode.className;
+
+            if (confiramtion) {
+                document.forms[formForSubmit].submit();
+            }
+
+            return false;
+        }));
+    });
+</script>
