@@ -59,19 +59,26 @@ namespace AUwebServices.Controllers
             }
 
             return View(serverForUpdating);
+
+            //else?
         }
         
         /// <summary>
         /// !REQUEST from updating form!
         /// </summary>
         /// <param name="server"></param>
-        [HttpPut]
-        public async Task<HttpStatusCode> Edit(Server server)
+        [HttpPost]
+        public async Task<ActionResult> Edit(Server server)
         {
-            HttpResponseMessage response = await client.PutAsJsonAsync($"{APIpath}/Servers", server);
-
-            return response.IsSuccessStatusCode ? HttpStatusCode.OK : HttpStatusCode.NotFound;
-
+            if (ModelState.IsValid)
+            {
+                HttpResponseMessage response = await client.PutAsJsonAsync($"{APIpath}/Servers", server);
+                return RedirectToAction("Index", "Servers");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         /// <summary>

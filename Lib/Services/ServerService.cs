@@ -10,15 +10,13 @@ namespace Lib.Services
 {
     public class ServerService : IServerService
     {
-        private static string _path = @"C:\Users\evgen\Desktop\AUVebServers\db.txt";
+        private static string _path = @"E:\A_level\Git\AUVebServers\db.txt";
 
         public static List<Server> _db = new List<Server>() { };
 
         static ServerService()
         {
             //_db.Add(new Server { Id = 1, Domen = "www.test.com", Name = "Test name", Type = ServerType.Gaming });
-            //if ((JsonConvert.DeserializeObject<List<Server>>(File.ReadAllText(_path)) == null){ }
-
 
             if (JsonConvert.DeserializeObject<List<Server>>(File.ReadAllText(_path)) == null)
             {

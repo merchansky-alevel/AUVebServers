@@ -3,5 +3,12 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<h2>Редактирование</h2>
 
+
+@using (Html.BeginForm("Edit", "Servers", FormMethod.Post))
+{
+    Html.RenderPartial("Partials/ServerFormPartials");
+
+    <button type="submit">Редактировать сервер</button>
+}
