@@ -113,12 +113,19 @@ namespace AUwebServices.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpDelete]
-        public async Task<HttpStatusCode> Delete(int id)
+        [HttpPost]
+        public async Task<ActionResult> DeleteServer(int id)
         {
             HttpResponseMessage response = await client.DeleteAsync($"{APIpath}/Servers/{id}");
 
-            return response.IsSuccessStatusCode ? HttpStatusCode.OK : HttpStatusCode.NotFound;
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View();
+            }
         }
     }
 }

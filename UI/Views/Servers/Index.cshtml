@@ -6,21 +6,31 @@
 
 <h2>Сервера</h2>
 
+<script>
+    const showModal = () => confirm("Подтверждаете удаление?")
+</script>
+
 <div class="container">
     <div class="row">
         <div class="col-md-12">
             @foreach (var server in Model)
             {
-                <div class="item">
-                    <hr />
-                    <h3>@server.Name</h3>
-                    <p>
-                        <a href="https://@server.Domen">@server.Domen</a>
-                    </p>
-                    <p>Server type: @server.Type</p>
+            <div class="item">
+                <hr />
+                <h3>@server.Name</h3>
+                <p>
+                    <a href="https://@server.Domen">@server.Domen</a>
+                </p>
+                <p>Server type: @server.Type</p>
+                @using (Html.BeginForm("DeleteServer", "Servers", FormMethod.Post))
+                {
+                    @Html.Hidden("id", server.Id)
                     @Html.ActionLink("Изменить", "Edit", "Servers", new { id = server.Id }, null)
-                    <hr />
-                </div>
+                    
+                    <button type="submit" onclick="showModal()" value="Удалить">Удалить</button>
+                }
+                <hr />
+            </div>
             }
         </div>
     </div>
