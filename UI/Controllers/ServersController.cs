@@ -66,11 +66,17 @@ namespace AUwebServices.Controllers
         /// </summary>
         /// <param name="server"></param>
         [HttpPut]
-        public async Task<HttpStatusCode> Edit(Server server)
+        public async Task<ActionResult> Edit(Server server)
         {
-            HttpResponseMessage response = await client.PutAsJsonAsync($"{APIpath}/Servers", server);
-
-            return response.IsSuccessStatusCode ? HttpStatusCode.OK : HttpStatusCode.NotFound;
+            if (ModelState.IsValid)
+            {
+                HttpResponseMessage response = await client.PutAsJsonAsync($"{APIpath}/Servers", server);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         /// <summary>
