@@ -59,19 +59,21 @@ namespace AUwebServices.Controllers
             }
 
             return View(serverForUpdating);
+
+            //else?
         }
         
         /// <summary>
         /// !REQUEST from updating form!
         /// </summary>
         /// <param name="server"></param>
-        [HttpPut]
+        [HttpPost]
         public async Task<ActionResult> Edit(Server server)
         {
             if (ModelState.IsValid)
             {
                 HttpResponseMessage response = await client.PutAsJsonAsync($"{APIpath}/Servers", server);
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Servers");
             }
             else
             {
