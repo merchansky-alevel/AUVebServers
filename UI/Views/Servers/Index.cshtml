@@ -20,7 +20,7 @@
                     <p>
                         <a href="https://@server.Domen">@server.Domen</a>
                     </p>
-                    <p>Server type: @server.Type</p>
+                    @*<p>Server type: @server.Type</p>*@
                     @using (Html.BeginForm("DeleteServer", "Servers", FormMethod.Post, new { @class = $"{index}" }))
                     {
                         @Html.Hidden("id", server.Id)

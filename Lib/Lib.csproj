@@ -49,7 +49,9 @@
     <Compile Include="Models\ServerType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IServerService.cs" />
+    <Compile Include="Services\IServerTypeService.cs" />
     <Compile Include="Services\ServerService.cs" />
+    <Compile Include="Services\ServerType.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
